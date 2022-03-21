@@ -20,6 +20,7 @@
 void crea_dir(char **,char [MAXPATH]);
 void crea_path(char [MAXPATH],char **);
 void crea_archivo(char [MAXPATH],char **);
+void imprimeinfo();
 
 int main(int argc, char **argv){
 strcat(*(argv+2),".txt");
@@ -32,8 +33,33 @@ int fdesc;
     }
     crea_dir(&*argv,path);
     crea_archivo(path,&*argv);
-
+    imprimeinfo();
 return 0;
+}
+/////////////////////////////////////////////////////////
+void imprimeinfo(){
+DIR *dir;
+int fdesc;
+struct dirent *info;
+struct stat infofile;
+    dir=opendir("./");
+    if(!dir)
+    {
+        closedir(dir);
+        printf("directorio no existente\n");
+        exit(EXIT_FAILURE);
+    }
+    do{
+        info=readdir(dir);
+        if(info){
+            fdesc=open(info->d_name, O_RDONLY);
+            if(fdesc!=-1){
+                fstat(fdesc,&infofile);
+                printf("\n%s--------------------Inodo: %ld",info->d_name,infofile.st_ino);
+            }
+        }
+    }while(info);
+
 }
 /////////////////////////////////////////////////////////
 void crea_archivo(char path[MAXPATH],char **argv){
@@ -57,7 +83,7 @@ char nombre[4][200]={"Luis Antonio Blanco Conde\n",
         printf("Archivo no existente\n");
         exit(EXIT_FAILURE);
     }
-    if(link(path,"p2-symlink")==-1){
+    if(link(path,"p2-hardlink")==-1){
         printf("\nCreacion fallida del hardlink");
         exit(EXIT_FAILURE);
     }
