@@ -1,5 +1,11 @@
-//
-//
+/*/////////////////////////////////////////////////////////////////////
+    Integrantes del equipo:
+                            Luis Antonio Blanco Conde
+                            Gustavo Contreras Mejia
+                            Alejandro Octavio Salas Comparan
+                            Gabriel Salom Fernandez
+/////////////////////////////////////////////////////////////////////*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
