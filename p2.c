@@ -30,15 +30,14 @@ return 0;
 void crea_dir(char **argv){
 struct stat dirinfo = {0};
 char nombre[100];
-while(stat(*(argv+1),&dirinfo)!=-1){
-    printf("\ndirectorio ya existente, ingrese otro nombre: ");
-    fflush(stdin);
-    scanf("%s",nombre);
-    strcpy(*(argv+1),nombre);
-}
-if(mkdir(*(argv+1),0755)==-1){
-    printf("\nError en la creacion del directorio.");
-    exit(EXIT_FAILURE);
-}
-
+    while(stat(*(argv+1),&dirinfo)!=-1){
+        printf("\ndirectorio ya existente, ingrese otro nombre: ");
+        fflush(stdin);
+        scanf("%s",nombre);
+        strcpy(*(argv+1),nombre);
+    }
+    if(mkdir(*(argv+1),0755)==-1){
+        printf("\nError en la creacion del directorio.");
+        exit(EXIT_FAILURE);
+    }
 }
