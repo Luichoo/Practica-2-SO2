@@ -97,7 +97,6 @@ char nombre[4][MAXNAME]={"Luis Antonio Blanco Conde\n",     //Arreglo de nombres
         printf("Archivo no existente\n");
         exit(EXIT_FAILURE);
     }
-    strncpy(name,*(argv+1),1);
     strcpy(name,*(argv+2));
     strcat(name,"-hardlink");
     if(link(path,name)==-1){                       //creacion del enlace fisico
@@ -105,7 +104,6 @@ char nombre[4][MAXNAME]={"Luis Antonio Blanco Conde\n",     //Arreglo de nombres
         exit(EXIT_FAILURE);
     }
     printf("\np2-hardlink creado");
-    strncpy(name,*(argv+1),1);
     strcpy(name,*(argv+2));
     strcat(name,"-symlink");
     if(symlink(path,(name))==-1){                   //creacion del enlace simbolico
